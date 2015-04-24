@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - 0.10
+env:
+  global:
+    - secure: c6cQd0Xsho3/694WZ5QBUqwHQc2M7IBBv6gAhF3aTZj749uUHEckWzFghrD1FWZNN2oo/r52gWN8FFkTsFgFWbMThXetxTlzFPBUTb1N/l0UEYtTrtk6isb5JQ7nwB859tuQPGiOGMwKacT+Z641YzF+rYwegfwrqKIF2RYD2i8=
+    - secure: e4bAHn9LHFIzttxyFEBpwML7T2xkUOsXPGltA16uVwCjY0rIzdeqSYjmyWb7hhUdFQfTpWrk4Wtp1CeP4hg5CqRg6l4IA0b1KFaoG79/eL9YQCH3RsIHKS6KwOAKL4kb4HLdlMgfc7glhXRtl1HZ0Ij7BbHOJfuL8HpofXloWFY=
+before_script:
+  - npm -g install bower gulp
+  - bower install
+  - gulp build
+script:
+  - gulp test
+  - gulp test-min
