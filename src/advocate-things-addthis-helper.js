@@ -5,6 +5,10 @@ AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 	// If queryParam is not defined
 	if(typeof meta[0].queryParamName == 'undefined')
 		queryParamName = 'AT';
+	else
+		queryParamName = meta[0].queryParamName;
+
+	console.log('queryParam returned' + queryParamName);
 
 	urlToShare = AT_ConstructUrlToShare(meta[0].token, queryParamName);
 	addthis.update('share', 'url', urlToShare);
