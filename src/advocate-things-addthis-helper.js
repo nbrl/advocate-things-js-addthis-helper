@@ -1,19 +1,33 @@
 // Handle appending token to the share url
 AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
-	var urlToShare = AT_ConstructUrlToShare(meta[0].token);
+	var queryParamName, urlToShare;
+
+	// If queryParam is not defined
+	if(typeof meta[0].queryParamName == 'undefined')
+		queryParamName = 'AT';
+
+	urlToShare = AT_ConstructUrlToShare(meta[0].token, queryParamName);
 	addthis.update('share', 'url', urlToShare);
 	addthis.url = urlToShare;
 	addthis.ready();
 });
 
-function AT_ConstructUrlToShare(token) {
-	var parser = document.createElement('a');
+function AT_ConstructUrlToShare(token, queryParamName) {
+	var parser;
+
+	if(queryParamName === '') {
+		queryParamName = 'AT';
+	}
+
+	// Instantiate parser
+	parser = document.createElement('a');
 	// If someone has injected the addthis url then use that, else use the default browser url
 	parser.href  = (addthis.url) ? addthis.url : window.top.location.href;
 
 	// Deal with existing token
-	if(parser.href.indexOf('DA=') !== -1 ) {
-		parser.href = parser.href.replace(/DA=.[^#&]*/g, 'DA='+token);
+	if(parser.href.indexOf(queryParamName + '=') !== -1 ) {
+		var re = new RegExp("/" + queryParamName + "=.[^#&]*/", "g");
+		parser.href = parser.href.replace(re, queryParamName + '=' + token);
 
 		return parser.href;
 	}
@@ -24,7 +38,7 @@ function AT_ConstructUrlToShare(token) {
 		parser.hostname +
 		parser.host +
 		parser.pathname +
-		(parser.search? parser.search + '&DA=' + token : '?DA=' + token) +
+		(parser.search? parser.search + '&' + queryParamName+ '=' + token : '?' + queryParamName + '=' + token) +
 		parser.hash;
 }
 
