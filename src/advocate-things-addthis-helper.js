@@ -13,7 +13,7 @@ AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 });
 
 function AT_ConstructUrlToShare(token, queryParamName) {
-	var parser;
+	var parser, url;
 
 	if(queryParamName === '') {
 		queryParamName = 'AT';
@@ -29,17 +29,23 @@ function AT_ConstructUrlToShare(token, queryParamName) {
 		var re = new RegExp("/" + queryParamName + "=.[^#&]*/", "g");
 		parser.href = parser.href.replace(re, queryParamName + '=' + token);
 
+		console.log('Replaced existing token: '+ parser.href);
+
 		return parser.href;
 	}
 
 	// Append new token
-	return parser.protocol +
+	url = parser.protocol +
 		'//' +
 		parser.hostname +
 		parser.host +
 		parser.pathname +
 		(parser.search? parser.search + '&' + queryParamName+ '=' + token : '?' + queryParamName + '=' + token) +
 		parser.hash;
+
+	console.log('Created new url to share: '+ url);
+
+	return url;
 }
 
 // On share send at data to sharepoint collector
