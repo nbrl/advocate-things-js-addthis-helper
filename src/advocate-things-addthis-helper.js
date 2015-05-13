@@ -3,12 +3,12 @@ AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 	var queryParamName, urlToShare;
 
 	// If queryParam is not defined
-	if(typeof meta[0].queryParamName == 'undefined')
+	if(typeof meta[0].queryParamName == 'undefined') {
 		queryParamName = 'AT';
-	else
+	}
+	else {
 		queryParamName = meta[0].queryParamName;
-
-	console.log('queryParam returned' + queryParamName);
+	}
 
 	urlToShare = AT_ConstructUrlToShare(meta[0].token, queryParamName);
 	addthis.update('share', 'url', urlToShare);
@@ -19,6 +19,7 @@ AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 function AT_ConstructUrlToShare(token, queryParamName) {
 	var parser, url;
 
+	// If no queryParameter is specified, AT is the default
 	if(queryParamName === '') {
 		queryParamName = 'AT';
 	}
@@ -33,8 +34,6 @@ function AT_ConstructUrlToShare(token, queryParamName) {
 		var re = new RegExp("/" + queryParamName + "=.[^#&]*/", "g");
 		parser.href = parser.href.replace(re, queryParamName + '=' + token);
 
-		console.log('Replaced existing token: '+ parser.href);
-
 		return parser.href;
 	}
 
@@ -46,8 +45,6 @@ function AT_ConstructUrlToShare(token, queryParamName) {
 		parser.pathname +
 		(parser.search? parser.search + '&' + queryParamName+ '=' + token : '?' + queryParamName + '=' + token) +
 		parser.hash;
-
-	console.log('Created new url to share: '+ url);
 
 	return url;
 }
