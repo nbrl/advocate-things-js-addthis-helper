@@ -18,6 +18,10 @@ module.exports = function(config) {
     basePath: '',
 
 
+    // Include adaptors for frameworks used in testing
+    plugins: ['karma-mocha', 'karma-browserify', 'karma-phantomjs-launcher', 'karma-sauce-launcher', 'karma-spec-reporter'],
+
+
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
     frameworks: ['mocha', 'browserify'],
@@ -25,7 +29,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      './dist/sdk.js',
+      './src/*.js',
       './test/*.js'
     ],
 
