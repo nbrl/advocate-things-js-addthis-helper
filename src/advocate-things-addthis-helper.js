@@ -20,7 +20,7 @@ var addthisHelper = {
 					queryParamName = meta[0].queryParamName;
 				}
 
-				urlToShare = this.constructUrlToShare(meta[0].token, queryParamName);
+				urlToShare = addthisHelper.constructUrlToShare(meta[0].token, queryParamName);
 				addthis.update('share', 'url', urlToShare);
 				addthis.url = urlToShare;
 				addthis.ready();
