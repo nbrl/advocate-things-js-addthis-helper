@@ -20,13 +20,13 @@ var addthisHelper = {
 					queryParamName = meta[0].queryParamName;
 				}
 
-				urlToShare = addthisHelper.ConstructUrlToShare(meta[0].token, queryParamName);
+				urlToShare = this.ConstructUrlToShare(meta[0].token, queryParamName);
 				addthis.update('share', 'url', urlToShare);
 				addthis.url = urlToShare;
 				addthis.ready();
 			});
 		} else {
-			addthisHelper.error('AT var not found');
+			this.error('AT var not found');
 		}
 	},
 	// Private method used by registerSharepointSaveHandler
@@ -83,7 +83,7 @@ var addthisHelper = {
 			    }
 			});
 		} else {
-			addthisHelper.error('Addthis var not found');
+			this.error('Addthis var not found');
 		}
 	},
 	error: function(errorMessage) {
