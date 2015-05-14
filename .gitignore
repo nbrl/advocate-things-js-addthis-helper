@@ -1,2 +1,4 @@
 issues
 deploy.conf
+
+node_modules/*
