@@ -26,7 +26,7 @@ var addthisHelper = {
 				addthis.ready();
 			});
 		} else {
-			this.error('AT var not found');
+			addthisHelper.error('AT var not found');
 		}
 	},
 	// Private method used by registerSharepointSaveHandler
@@ -83,7 +83,7 @@ var addthisHelper = {
 			    }
 			});
 		} else {
-			this.error('Addthis var not found');
+			addthisHelper.error('Addthis var not found');
 		}
 	},
 	error: function(errorMessage) {
