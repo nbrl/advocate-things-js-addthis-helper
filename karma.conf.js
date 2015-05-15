@@ -19,7 +19,7 @@ module.exports = function(config) {
 
 
     // Include adaptors for frameworks used in testing
-    plugins: ['karma-mocha', 'karma-browserify', 'karma-phantomjs-launcher', 'karma-sauce-launcher', 'karma-spec-reporter'],
+//    plugins: ['karma-mocha', 'karma-browserify', 'karma-phantomjs-launcher', 'karma-sauce-launcher', 'karma-spec-reporter'],
 
 
     // frameworks to use
