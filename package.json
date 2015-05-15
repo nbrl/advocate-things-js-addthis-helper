@@ -4,6 +4,9 @@
   "description": "Advocate Things Addthis Helper",
   "author": "Digital Animal",
   "license": "Apache 2.0",
+  "scripts": {
+    "test": "./node_modules/karma/bin/karma start"
+  },
   "homepage": "https://github.com/digitalanimal/advocate-things-js-addthis-helper",
   "repository": {
     "type": "git",
