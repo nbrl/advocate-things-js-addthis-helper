@@ -45,7 +45,7 @@ var addthisHelper = {
 
 		// Deal with existing token
 		if(parser.href.indexOf(queryParamName + '=') !== -1 ) {
-			var re = new RegExp("/" + queryParamName + "=.[^#&]*/", "g");
+			var re = new RegExp(queryParamName + "=.[^#&]*", "g");
 			parser.href = parser.href.replace(re, queryParamName + '=' + token);
 
 			return parser.href;
