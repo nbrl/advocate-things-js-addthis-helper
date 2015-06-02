@@ -21,13 +21,16 @@ var addthisHelper = {
 				}
 
 				urlToShare = addthisHelper.constructUrlToShare(meta[0].token, queryParamName);
-				addthis.update('share', 'url', urlToShare);
-				addthis.url = urlToShare;
-				addthis.ready();
+				addthisHelper.sharePage(urlToShare);
 			});
 		} else {
 			addthisHelper.error('AT var not found');
 		}
+	},
+	sharePage: function(urlToShare) {
+		addthis.update('share', 'url', urlToShare);
+		addthis.url = urlToShare;
+		addthis.ready();
 	},
 	// Private method used by registerSharepointSaveHandler
 	constructUrlToShare: function (token, queryParamName) {
