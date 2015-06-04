@@ -6,16 +6,24 @@ describe('the Addthis helper interface', function () {
         expect(addthisHelper).to.be.an('object');
     });
 
-    it('should have a registerSharepointSaveHandler function', function () {
-        expect(addthisHelper.registerSharepointSaveHandler).to.be.a('function');
+    it('should have an Init function', function () {
+        expect(addthisHelper.Init).to.be.a('function');
+    });
+
+    it('should have a RegisterSharepointSaveHandler function', function () {
+        expect(addthisHelper.RegisterSharepointSaveHandler).to.be.a('function');
+    });
+
+    it('should have an RegisterAddthisShareListener function', function () {
+        expect(addthisHelper.RegisterAddthisShareListener).to.be.a('function');
     });
 
     it('should have a constructUrlToShare function', function () {
         expect(addthisHelper.constructUrlToShare).to.be.a('function');
     });
 
-    it('should have an registerAddthisShareListener function', function () {
-        expect(addthisHelper.registerAddthisShareListener).to.be.a('function');
+    it('should have a SharePage function', function () {
+        expect(addthisHelper.SharePage).to.be.a('function');
     });
 
     it('should have an error function', function () {

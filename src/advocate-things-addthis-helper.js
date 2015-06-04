@@ -15,7 +15,7 @@ var addthisHelper = {
 			AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 				var urlToShare = addthisHelper.constructUrlToShare(meta[0].token, meta[0].queryParamName);
 				
-				addthisHelper.sharePage(urlToShare);
+				addthisHelper.SharePage(urlToShare);
 			});
 		} else {
 			addthisHelper.error('AT var not found');
@@ -45,7 +45,7 @@ var addthisHelper = {
 			addthisHelper.error('Addthis var is not defined');
 		}
 	},
-	sharePage: function(urlToShare) {
+	SharePage: function(urlToShare) {
 		addthis.update('share', 'url', urlToShare);
 		addthis.url = urlToShare;
 		addthis.ready();
