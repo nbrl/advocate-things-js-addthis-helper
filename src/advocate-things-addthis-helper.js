@@ -4,6 +4,11 @@
  */
 
 var addthisHelper = {
+	// Do whatever needs to be done on load
+	Init: function() {
+		addthisHelper.RegisterAddthisShareListener();
+		addthisHelper.RegisterSharepointSaveHandler();
+	},
 	// Handle appending token to the share url
 	RegisterSharepointSaveHandler: function() {
 		if(typeof AT !== 'undefined') {
@@ -75,5 +80,4 @@ var addthisHelper = {
 	}
 };
 
-addthisHelper.RegisterAddthisShareListener();
-addthisHelper.RegisterSharepointSaveHandler();
+addthisHelper.Init();
