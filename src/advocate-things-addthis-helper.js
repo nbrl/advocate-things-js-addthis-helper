@@ -21,6 +21,8 @@ var addthisHelper = {
 				}
 
 				urlToShare = addthisHelper.constructUrlToShare(meta[0].token, queryParamName);
+				console.log('urltoshare: ' + urlToShare);
+				
 				addthisHelper.sharePage(urlToShare);
 			});
 		} else {
@@ -82,7 +84,7 @@ var addthisHelper = {
 			        // with another solution This could be made even more generic by reading a specific var the at
 			        // object and appending it to the name, making the sharepoint definition unique for the client's
 			        // website.
-			        AT.sendSharepoint(evt.data.service + 'Share', window.advocate_things_data);
+			        AT.sendSharepoint(window.advocate_things_data._at.sharepointName, window.advocate_things_data);
 			    }
 			});
 		} else {
