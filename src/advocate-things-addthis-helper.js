@@ -1,8 +1,6 @@
 /*
  * This file requires the advocate things sdk and the addthis library to be pre-loaded.
  * The order of the inclusion should not effect the functionality of this file.
- *
- * To use simply add this file just before the addthis buttons container.
  */
 
 var addthisHelper = {
