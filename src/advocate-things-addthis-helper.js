@@ -12,17 +12,9 @@ var addthisHelper = {
 			AT.addEventListener(AT.Events.SharepointSaved, function (meta) {
 				var queryParamName, urlToShare;
 
-				// If queryParam is not defined
-				if(typeof meta[0].queryParamName == 'undefined') {
-					queryParamName = 'AT';
-				}
-				else {
-					queryParamName = meta[0].queryParamName;
-				}
-
-				urlToShare = addthisHelper.constructUrlToShare(meta[0].token, queryParamName);
+				urlToShare = addthisHelper.constructUrlToShare(meta[0].token, meta[0].queryParamName);
 				console.log('urltoshare: ' + urlToShare);
-				
+
 				addthisHelper.sharePage(urlToShare);
 			});
 		} else {
@@ -37,11 +29,6 @@ var addthisHelper = {
 	// Private method used by registerSharepointSaveHandler
 	constructUrlToShare: function (token, queryParamName) {
 		var parser, url;
-
-		// If no queryParameter is specified, AT is the default
-		if(queryParamName === '') {
-			queryParamName = 'AT';
-		}
 
 		// Instantiate parser
 		parser = document.createElement('a');
@@ -88,7 +75,7 @@ var addthisHelper = {
 			    }
 			});
 		} else {
-			addthisHelper.error('Addthis var not found');
+			addthisHelper.error('Addthis var is not defined');
 		}
 	},
 	error: function(errorMessage) {
