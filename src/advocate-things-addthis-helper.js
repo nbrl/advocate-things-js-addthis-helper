@@ -44,10 +44,7 @@ var addthisHelper = {
 		}
 
 		// Append new token
-		url = parser.protocol +
-			'//' +
-			parser.hostname +
-			parser.host +
+		url = parser.origin +
 			parser.pathname +
 			(parser.search? parser.search + '&' + queryParamName+ '=' + token : '?' + queryParamName + '=' + token) +
 			parser.hash;
