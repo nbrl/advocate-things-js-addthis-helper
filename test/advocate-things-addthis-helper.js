@@ -18,12 +18,12 @@ describe('the Addthis helper interface', function () {
         expect(addthisHelper.RegisterAddthisShareListener).to.be.a('function');
     });
 
-    it('should have a constructUrlToShare function', function () {
-        expect(addthisHelper.constructUrlToShare).to.be.a('function');
-    });
-
     it('should have a SharePage function', function () {
         expect(addthisHelper.SharePage).to.be.a('function');
+    });
+
+    it('should have a constructUrlToShare function', function () {
+        expect(addthisHelper.constructUrlToShare).to.be.a('function');
     });
 
     it('should have an error function', function () {
