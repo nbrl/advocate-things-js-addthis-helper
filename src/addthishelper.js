@@ -9,8 +9,13 @@
         addthis.addEventListener('addthis.menu.share', function (evt) {
             context.AT.consumeToken(
                 context.AT.getAddressBarShareToken(),
-                { _at: { shareChannel: evt.data.service } }
-            );
+                { _at: { shareChannel: evt.data.service } }, function (err, token) {
+                    if (err) {
+                        console.log(err);
+                    }
+
+                    context.AT.createToken();
+                });
         });
     };
 
@@ -38,13 +43,13 @@
         parser.href  = (addthis.url) ? addthis.url : window.top.location.href;
 
         // Deal with existing token
-        if(parser.href.indexOf(queryParamName + '=') !== -1 ) {
-            var re = new RegExp(queryParamName + "=.[^#&]*", "g");
-            parser.href = parser.href.replace(re, queryParamName + '=' + token);
+        if(parser.href.indexOf(qpName + '=') !== -1 ) {
+            var re = new RegExp(qpName + "=.[^#&]*", "g");
+            parser.href = parser.href.replace(re, qpName + '=' + token);
 
             return parser.href;
         }
-c
+
         // Append new token
         url = parser.origin +
             parser.pathname +
