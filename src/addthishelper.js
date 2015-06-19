@@ -17,7 +17,7 @@
                         console.log(err);
                     }
 
-                    context.AT.createToken(); // fallback to window.advocate_things_data
+                    context.AT.createToken(window.advocate_things_data);
                 });
         });
     };
