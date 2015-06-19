@@ -7,14 +7,17 @@
      */
     addthishelper.registerShareListener = function () {
         addthis.addEventListener('addthis.menu.share', function (evt) {
+            var data = JSON.parse(JSON.stringify(window.advocate_things_data));
+            data._at.shareChannel = evt.data.service;
+
             context.AT.consumeToken(
                 context.AT.getAddressBarShareToken(),
-                { _at: { shareChannel: evt.data.service } }, function (err, token) {
+                data, function (err, token) {
                     if (err) {
                         console.log(err);
                     }
 
-                    context.AT.createToken();
+                    context.AT.createToken(); // fallback to window.advocate_things_data
                 });
         });
     };
@@ -27,15 +30,22 @@
             if (token) {
                 var urlToShare = addthishelper.constructUrl(token, qpName);
 
-                addthis.update('share', 'url', urlToShare);
-                addthis.url = urlToShare;
-                addthis.ready();
+                addthishelper.setShareUrl(urlToShare);
             }
         });
     };
 
+    addthishelper.setShareUrl = function (urlToShare) {
+        addthis.update('share', 'url', urlToShare);
+        addthis.url = urlToShare;
+        addthis.ready();
+        //addthis.layers.refresh();
+        //addthis.toolbox(".addthis_sharing_toolbox");
+    };
+
     addthishelper.constructUrl = function (token, qpName) {
-        var parser, url;
+        var parser;
+        var url;
 
         // Instantiate parser
         parser = document.createElement('a');
@@ -54,8 +64,8 @@
         url = parser.origin +
             parser.pathname +
             (parser.search
-             ? parser.search + '&' + queryParamName+ '=' + token
-             : '?' + queryParamName + '=' + token) +
+             ? parser.search + '&' + qpName+ '=' + token
+             : '?' + qpName + '=' + token) +
             parser.hash;
 
         return url;
